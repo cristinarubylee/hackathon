@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D41E27882DBD7C3C0066A134 /* BottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E27872DBD7C1B0066A134 /* BottomSheetVC.swift */; };
 		D43164AE2DBD6FB700F25254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164AD2DBD6FB700F25254 /* AppDelegate.swift */; };
 		D43164B02DBD6FB700F25254 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164AF2DBD6FB700F25254 /* SceneDelegate.swift */; };
 		D43164B52DBD6FB700F25254 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D43164B42DBD6FB700F25254 /* Base */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D41E27872DBD7C1B0066A134 /* BottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetVC.swift; sourceTree = "<group>"; };
 		D43164AA2DBD6FB700F25254 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43164AD2DBD6FB700F25254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D43164AF2DBD6FB700F25254 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				D43164E12DBD717B00F25254 /* CalendarVC.swift */,
+				D41E27872DBD7C1B0066A134 /* BottomSheetVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				D43164E22DBD717B00F25254 /* CalendarVC.swift in Sources */,
 				D43164AE2DBD6FB700F25254 /* AppDelegate.swift in Sources */,
 				D43164B02DBD6FB700F25254 /* SceneDelegate.swift in Sources */,
+				D41E27882DBD7C3C0066A134 /* BottomSheetVC.swift in Sources */,
 				D43164E52DBD747F00F25254 /* Event.swift in Sources */,
 				D43164DF2DBD714600F25254 /* DateCollectionViewCell.swift in Sources */,
 			);
