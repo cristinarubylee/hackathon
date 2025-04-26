@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		D43164AE2DBD6FB700F25254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164AD2DBD6FB700F25254 /* AppDelegate.swift */; };
 		D43164B02DBD6FB700F25254 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164AF2DBD6FB700F25254 /* SceneDelegate.swift */; };
-		D43164B22DBD6FB700F25254 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164B12DBD6FB700F25254 /* ViewController.swift */; };
 		D43164B52DBD6FB700F25254 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D43164B42DBD6FB700F25254 /* Base */; };
 		D43164B72DBD6FB900F25254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43164B62DBD6FB900F25254 /* Assets.xcassets */; };
 		D43164BA2DBD6FB900F25254 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D43164B92DBD6FB900F25254 /* Base */; };
 		D43164C52DBD6FB900F25254 /* CalendarAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164C42DBD6FB900F25254 /* CalendarAppTests.swift */; };
 		D43164CF2DBD6FB900F25254 /* CalendarAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164CE2DBD6FB900F25254 /* CalendarAppUITests.swift */; };
 		D43164D12DBD6FB900F25254 /* CalendarAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164D02DBD6FB900F25254 /* CalendarAppUITestsLaunchTests.swift */; };
+		D43164DF2DBD714600F25254 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164DE2DBD714600F25254 /* DateCollectionViewCell.swift */; };
+		D43164E22DBD717B00F25254 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164E12DBD717B00F25254 /* CalendarVC.swift */; };
+		D43164E52DBD747F00F25254 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164E42DBD747F00F25254 /* Event.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,6 @@
 		D43164AA2DBD6FB700F25254 /* CalendarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43164AD2DBD6FB700F25254 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D43164AF2DBD6FB700F25254 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D43164B12DBD6FB700F25254 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D43164B42DBD6FB700F25254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D43164B62DBD6FB900F25254 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D43164B92DBD6FB900F25254 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		D43164CA2DBD6FB900F25254 /* CalendarAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalendarAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43164CE2DBD6FB900F25254 /* CalendarAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAppUITests.swift; sourceTree = "<group>"; };
 		D43164D02DBD6FB900F25254 /* CalendarAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D43164DE2DBD714600F25254 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
+		D43164E12DBD717B00F25254 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		D43164E42DBD747F00F25254 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,11 @@
 		D43164AC2DBD6FB700F25254 /* CalendarApp */ = {
 			isa = PBXGroup;
 			children = (
+				D43164E32DBD746D00F25254 /* Models */,
+				D43164E02DBD715900F25254 /* Controllers */,
+				D43164DD2DBD712E00F25254 /* Views */,
 				D43164AD2DBD6FB700F25254 /* AppDelegate.swift */,
 				D43164AF2DBD6FB700F25254 /* SceneDelegate.swift */,
-				D43164B12DBD6FB700F25254 /* ViewController.swift */,
 				D43164B32DBD6FB700F25254 /* Main.storyboard */,
 				D43164B62DBD6FB900F25254 /* Assets.xcassets */,
 				D43164B82DBD6FB900F25254 /* LaunchScreen.storyboard */,
@@ -125,6 +131,30 @@
 				D43164D02DBD6FB900F25254 /* CalendarAppUITestsLaunchTests.swift */,
 			);
 			path = CalendarAppUITests;
+			sourceTree = "<group>";
+		};
+		D43164DD2DBD712E00F25254 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D43164DE2DBD714600F25254 /* DateCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D43164E02DBD715900F25254 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D43164E12DBD717B00F25254 /* CalendarVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D43164E32DBD746D00F25254 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D43164E42DBD747F00F25254 /* Event.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43164B22DBD6FB700F25254 /* ViewController.swift in Sources */,
+				D43164E22DBD717B00F25254 /* CalendarVC.swift in Sources */,
 				D43164AE2DBD6FB700F25254 /* AppDelegate.swift in Sources */,
 				D43164B02DBD6FB700F25254 /* SceneDelegate.swift in Sources */,
+				D43164E52DBD747F00F25254 /* Event.swift in Sources */,
+				D43164DF2DBD714600F25254 /* DateCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
