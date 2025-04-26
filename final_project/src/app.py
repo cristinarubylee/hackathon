@@ -28,13 +28,21 @@ def failure_response(message, code=404):
 
 
 
+# Todo Endpoints 
+
+
+
+
+
+# Category Endpoint
+
+
+
+
 
 # Journal Endpoints
 
 
-
-
-# Todo Endpoints 
 
 
 if __name__ == "__main__":
