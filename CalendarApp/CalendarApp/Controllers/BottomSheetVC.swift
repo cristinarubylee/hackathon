@@ -1,13 +1,7 @@
-//
-//  BottomSheetVC.swift
-//  CalendarApp
-//
-//  Created by Jason Wang on 4/26/25.
-//
-
 import UIKit
 
 class BottomSheetViewController: UIViewController {
+    let scrollView = UIScrollView()
     let label = UILabel()
     
     override func viewDidLoad() {
@@ -15,6 +9,7 @@ class BottomSheetViewController: UIViewController {
         view.backgroundColor = .systemBackground
 
         setupButtons()
+        setupScrollView()
         setupLabel()
     }
 
@@ -41,22 +36,43 @@ class BottomSheetViewController: UIViewController {
         ])
     }
 
+    func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+        ])
+    }
+
     func setupLabel() {
         label.text = "Select a button!"
         label.numberOfLines = 0
-        view.addSubview(label)
+        label.lineBreakMode = .byWordWrapping // Ensure the text wraps properly
+        scrollView.addSubview(label)
         
         label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            label.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            label.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
+        
+        // Set preferredMaxLayoutWidth to the width of the scrollView for proper wrapping
+        label.preferredMaxLayoutWidth = view.bounds.width - 40 // 20 padding on each side
     }
 
     @objc func buttonTapped(_ sender: UIButton) {
         if let title = sender.titleLabel?.text {
-            label.text = "You clicked: \(title)"
+            // Add more content to simulate scroll
+            label.text = "You clicked: \(title)\n" + String(repeating: "Extra content for scrolling. ", count: 500)
+            
+            // Adjust the content size of the scrollView to match the label's height
+            let labelHeight = label.intrinsicContentSize.height
+            scrollView.contentSize = CGSize(width: view.bounds.width - 40, height: labelHeight)
         }
     }
 }
