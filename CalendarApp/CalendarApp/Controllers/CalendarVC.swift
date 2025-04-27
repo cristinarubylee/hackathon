@@ -14,6 +14,7 @@ class CalendarVC: UIViewController {
     private var collectionView: UICollectionView!
     private var textLabel = UILabel()
     private var stackView = UIStackView()
+//    private var buttonView = UIButton()
     
     // MARK: - Properties (data)
     // Dummy Data
@@ -62,6 +63,7 @@ class CalendarVC: UIViewController {
         
         setupDaysOfWeek()
         setupCollectionView()
+//        setupButtonView()
     }
     
     // MARK: - Set Up Views
@@ -113,6 +115,18 @@ class CalendarVC: UIViewController {
             daysOfWeekStackView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
+    
+//    private func setupButtonView() {
+//        buttonView.backgroundColor = .systemGray
+//        
+//        view.addSubview(buttonView)
+//        buttonView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        NSLayoutConstraint.activate([
+//            buttonView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+//            buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+//        ])
+//    }
 }
 
 // MARK: - UICollectionViewDelegate
