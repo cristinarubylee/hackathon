@@ -13,19 +13,22 @@ class CalendarVC: UIViewController {
     // MARK: - Properties (view)
     private var collectionView: UICollectionView!
     private var textLabel = UILabel()
+    private var stackView = UIStackView()
     
     // MARK: - Properties (data)
-    private var events: [Event] = []
+    // Dummy Data
+    private var days: [CalendarDay] = (1...31).map { CalendarDay(date: $0, events: []) }
     
     // MARK: - Init
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 2
         layout.scrollDirection = .vertical
 
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        // Register original cell
         collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.reuse)
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -42,53 +45,74 @@ class CalendarVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
-        title = "Calendar"
+        
+        title = "Month"
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor.white
         
-//        setupTextLabel()
-//        setupCollectionView()
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.black
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        
+        setupDaysOfWeek()
+        setupCollectionView()
     }
     
     // MARK: - Set Up Views
     
+    private let daysOfWeekStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.spacing = 0
+        return stackView
+    }()
+    
     private func setupCollectionView() {
-        collectionView.backgroundColor = UIColor.gray
-
-        let padding: CGFloat = 24   // Use this constant when configuring constraints
-
-        // TODO: Set Up CollectionView
-                
+        collectionView.backgroundColor = UIColor.black
+                        
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        refreshControl.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
-//        collectionView.refreshControl = refreshControl
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
+            collectionView.topAnchor.constraint(equalTo: daysOfWeekStackView.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
-    private func setupTextLabel() {
-        textLabel.text = "Here"
-        textLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        textLabel.textColor = UIColor.black
+    private func setupDaysOfWeek() {
+        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
         
-        view.addSubview(textLabel)
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        for day in days {
+            let label = UILabel()
+            label.text = day
+            label.textColor = UIColor.white
+            label.textAlignment = .center
+            label.font = UIFont.boldSystemFont(ofSize: 14)
+            
+            daysOfWeekStackView.addArrangedSubview(label)
+        }
+        
+        daysOfWeekStackView.backgroundColor = UIColor.black
+        view.addSubview(daysOfWeekStackView)
+        daysOfWeekStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            textLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            daysOfWeekStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            daysOfWeekStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            daysOfWeekStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            daysOfWeekStackView.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
-
 }
 
 // MARK: - UICollectionViewDelegate
@@ -100,28 +124,29 @@ extension CalendarVC: UICollectionViewDelegate { }
 extension CalendarVC: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // TODO: Return the cells for each section
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCollectionViewCell.reuse, for: indexPath) as? DateCollectionViewCell else {return UICollectionViewCell()}
-        
-        return cell
-
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCollectionViewCell.reuse, for: indexPath) as? DateCollectionViewCell else { return UICollectionViewCell() }
+            
+            let index = indexPath.section * 7 + indexPath.row
+            
+            if index < days.count {
+                cell.configure(calDay: days[index])
+            } else {
+                cell.configureEmpty()
+            }
+            
+            return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // TODO: Return the number of rows for each section
-        return 5
+        return 7
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // TODO: Return the number of sections in this table view
-        return 1
+        return 5
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        // TODO: Return the inset for the spacing between the two sections
-
-//        return UIEdgeInsets(top: 25, left: 0, bottom: 0, right: 0) // Replace this line
-        return UIEdgeInsets()
+        return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     }
 
 }
@@ -132,8 +157,13 @@ extension CalendarVC: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let size = collectionView.frame.width / 7 - 8
-        return CGSize(width: size, height: 150)
+        let padding: CGFloat = 2
+        let itemsPerRow: CGFloat = 7
+
+        let totalPadding = padding * (itemsPerRow - 1)
+        let individualCellWidth = (collectionView.frame.width - totalPadding) / itemsPerRow
+
+        return CGSize(width: individualCellWidth, height: 100)
     }
 
 }

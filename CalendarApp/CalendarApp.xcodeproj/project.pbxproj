@@ -18,6 +18,7 @@
 		D43164DF2DBD714600F25254 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164DE2DBD714600F25254 /* DateCollectionViewCell.swift */; };
 		D43164E22DBD717B00F25254 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164E12DBD717B00F25254 /* CalendarVC.swift */; };
 		D43164E52DBD747F00F25254 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164E42DBD747F00F25254 /* Event.swift */; };
+		D43164E72DBD86FF00F25254 /* CalendarDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43164E62DBD86FF00F25254 /* CalendarDay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D43164DE2DBD714600F25254 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		D43164E12DBD717B00F25254 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		D43164E42DBD747F00F25254 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D43164E62DBD86FF00F25254 /* CalendarDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				D43164E42DBD747F00F25254 /* Event.swift */,
+				D43164E62DBD86FF00F25254 /* CalendarDay.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43164E22DBD717B00F25254 /* CalendarVC.swift in Sources */,
+				D43164E72DBD86FF00F25254 /* CalendarDay.swift in Sources */,
 				D43164AE2DBD6FB700F25254 /* AppDelegate.swift in Sources */,
 				D43164B02DBD6FB700F25254 /* SceneDelegate.swift in Sources */,
 				D43164E52DBD747F00F25254 /* Event.swift in Sources */,

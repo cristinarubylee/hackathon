@@ -8,7 +8,6 @@
 import Foundation
 
 struct Event : Codable {
-    // TODO: Create a Post Struct here
-    let date: Date
-    let description: String    
+    let time: Date
+    let description: String
 }

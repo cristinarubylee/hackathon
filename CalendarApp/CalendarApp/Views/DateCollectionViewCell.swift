@@ -20,33 +20,35 @@ class DateCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.white
-        layer.cornerRadius = 16
+        backgroundColor = UIColor.clear
+        
+        setupDateLabel()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Function for the cell that, upon receiving the data, maps the data to the cell's views
-//    func configure(post: Post) {
-//        likesLabel.text = "\(post.likes.count) likes"
-//        recencyLabel.text = post.time.convertToAgo()
-//        postBodyLabel.text = post.messageclCo//"
-//    }
+    func configure(calDay: CalendarDay) {
+        dateLabel.text = "\(calDay.date)"
+    }
+    
+    func configureEmpty() {
+        dateLabel.text = ""
+    }
     
     // MARK: - Set Up Views
     private func setupDateLabel() {
         dateLabel.text = "1"
-        dateLabel.font = UIFont.boldSystemFont(ofSize: 10)
-        dateLabel.textColor = UIColor.black
+        dateLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        dateLabel.textColor = UIColor.white
         
         contentView.addSubview(dateLabel)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 10),
-            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 22)
+            dateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor)
         ])
     }
 }
