@@ -1,5 +1,8 @@
+import json
+
 from db import db
 from flask import Flask, request
+from db import Event, Category, Timespan, Journal, Task
 
 app = Flask(__name__)
 db_filename = "cms.db"
@@ -21,9 +24,21 @@ def success_response(data, code=200):
 def failure_response(message, code=404):
     return json.dumps({"error": message}), code
 
-# Routes
+# Routes 
+# @app.route("/")
 
 # Events Endpoints
+
+
+
+
+# Todo Endpoints 
+
+
+
+
+
+# Category Endpoint
 
 
 
@@ -32,9 +47,6 @@ def failure_response(message, code=404):
 # Journal Endpoints
 
 
-
-
-# Todo Endpoints 
 
 
 if __name__ == "__main__":

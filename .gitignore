@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+final_project/src/venv/
+.env
+
+# macOS
+.DS_Store
+
+# Xcode
+*.xcworkspace
+!default.xcworkspace
+*.xcuserstate
+*.xcuserdata
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.xccheckout
+
+# VSCode
+.vscode/
+
+# Logs
+*.log

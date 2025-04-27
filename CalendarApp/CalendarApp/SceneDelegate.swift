@@ -1,53 +1,55 @@
-//
-//  SceneDelegate.swift
-//  CalendarApp
-//
-//  Created by Library User on 4/26/25.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
+        // Create and set the main view controller with navigation
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: CalendarVC())
+        let calendarVC = CalendarVC() // Replace with your actual CalendarVC
+        let navigationController = UINavigationController(rootViewController: calendarVC)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+
+        // Call to show the Bottom Sheet
+        showBottomSheet()
+    }
+
+    func showBottomSheet() {
+        // Create the BottomSheetViewController
+        let bottomSheetVC = BottomSheetViewController()
+
+        // Set the modal presentation style to make it act like a bottom sheet
+        bottomSheetVC.modalPresentationStyle = .pageSheet
+        if let sheet = bottomSheetVC.sheetPresentationController {
+            sheet.detents = [.medium(), .large()] // Adjust the sheet size as you like
+            sheet.prefersGrabberVisible = true
+        }
+
+        // Present the BottomSheet on top of the root view controller (which is a navigation controller)
+        window?.rootViewController?.present(bottomSheetVC, animated: true, completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
     }
-
-
 }
-

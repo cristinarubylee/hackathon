@@ -47,7 +47,7 @@ class Event(db.Model):
             "recurrence": self.recurrence,
             "day_of_week": self.day_of_week,
             "start_time_frame": self.start_time_frame,
-            "end_time_frame": self.end_time,
+            "end_time_frame": self.end_time_frame,
             "timespan" : [t.serialize() for t in self.timespan],            
         }
     
