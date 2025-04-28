@@ -78,15 +78,14 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     category = db.Column(db.String, nullable = False)
     events = db.relationship("Event", secondary = event_category_assc, back_populates = "category")
-    tasks = db.relationship("Tasks", secondary = task_category_assc, back_populates = "category")
+    tasks = db.relationship("Task", secondary = task_category_assc, back_populates = "category")
 
 
-    def __inti__(self, **kwargs):
+    def __init__(self, **kwargs):
         """
         Initialize Category object/entry
         """
         self.category = kwargs.get("category", "")
-
     
     def serialize(self):
         """
@@ -96,7 +95,7 @@ class Category(db.Model):
             "id": self.id,
             "category": self.category,
             "events": [e.simple_serialize() for e in self.events],
-            "tasks": [t.simple_serialize() for t in self.events]
+            "tasks": [t.simple_serialize() for t in self.tasks]
         }
 
 
@@ -194,7 +193,7 @@ class Task(db.Model):
         """
         self.description = kwargs.get("description", "")
         self.date = kwargs.get("date", "")
-        self.status = kwargs.get("done", False)
+        self.status = kwargs.get("status", False)
 
     def simple_serialize(self):
         """
