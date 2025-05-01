@@ -3,7 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-final_project/src/venv/
+backend/src/venv/
 .env
 
 # macOS
