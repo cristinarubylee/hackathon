@@ -1,5 +1,15 @@
 # Hackathon
 
-App Name: 
+## App Name: 
 
-App Tagline:
+### App Tagline:
+
+## App Description:
+
+### Purpose 
+
+### Features
+
+## Screenshots / Important Features:
+
+## A list of how your app addresses each of the requirements
