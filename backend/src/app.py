@@ -292,23 +292,77 @@ def update_event(event_id):
 
 @app.route("/api/task/date/")
 def get_task_by_date():
-    pass
+    """
+    Endpoint to get all tasks, using date
+    """
+    body = json.loads(request.data)
+    date_input = body.get("date")
+    if not is_valid_date(date_input):
+        return failure_response("Invalid Date, Expected format = YYYY-MM-DD", 400)
+    tasks = Task.query.filter_by(date=date_input)
+    return success_response({"tasks": [t.serialize() for t in tasks]})
 
 @app.route("/api/task/<int:task_id>/")
 def get_task_by_id(task_id):
-    pass
+    """
+    Endpoint to get task by ID
+    """
+    task = Task.query.get(task_id)
+    if task is None:
+        return failure_response("Task not found!", 404)
+    return success_response(task.serialize())
 
 @app.route("/api/task/", methods=["POST"])
 def create_task():
-    pass
+    """
+    Endpoint to create a new task
+    """
+    body = json.loads(request.data)
+    description = body.get("description")
+    date = body.get("date", "")
+    status = body.get("status", False)
+
+    if not description:
+        return failure_response("Missing description field!", 400)
+    if date and not is_valid_date(date):
+        return failure_response("Invalid Date, Expected format = YYYY-MM-DD", 400)
+
+    task = Task(description=description, date=date, status=status)
+    db.session.add(task)
+    db.session.commit()
+    return success_response(task.serialize(), 201)
 
 @app.route("/api/task/<int:task_id>/", methods=["DELETE"])
 def delete_task_id(task_id):
-    pass
+    """
+    Endpoint to delete a task by ID
+    """
+    task = Task.query.get(task_id)
+    if task is None:
+        return failure_response("Task not found!", 404)
+    db.session.delete(task)
+    db.session.commit()
+    return success_response(task.serialize())
 
 @app.route("/api/task/<int:task_id>/", methods=["PUT"])
 def update_task_id(task_id):
-    pass
+    """
+    Endpoint to update a task by ID
+    """
+    task = Task.query.get(task_id)
+    if task is None:
+        return failure_response("Task not found!", 404)
+
+    body = json.loads(request.data)
+    task.description = body.get("description", task.description)
+    task.status = body.get("status", task.status)
+    if "date" in body:
+        if not is_valid_date(body["date"]):
+            return failure_response("Invalid Date, Expected format = YYYY-MM-DD", 400)
+        task.date = body["date"]
+
+    db.session.commit()
+    return success_response(task.serialize())
 
 ########################################
 # Category Endpoints
