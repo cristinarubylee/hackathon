@@ -1,11 +1,11 @@
 import UIKit
 
 class BottomSheetViewController: UIViewController {
-    var collectionView: UICollectionView!
+    var eventsCollectionView: UICollectionView!
     var events: [Event] = [
         Event(title: "Dummy1", recurrence: "Dummy", startTimeFrame: "Dummy", endTimeFrame: "Dummy", timespan: [], category: []),
-//        Event(title: "Dummy2", recurrence: "Dummy", startTimeFrame: "Dummy", endTimeFrame: "Dummy", timespan: [], category: []),
-//        Event(title: "Dummy3", recurrence: "Dummy", startTimeFrame: "Dummy", endTimeFrame: "Dummy", timespan: [], category: [])
+        Event(title: "Dummy2", recurrence: "Dummy", startTimeFrame: "Dummy", endTimeFrame: "Dummy", timespan: [], category: []),
+        Event(title: "Dummy3", recurrence: "Dummy", startTimeFrame: "Dummy", endTimeFrame: "Dummy", timespan: [], category: [])
     ]  // Simulate event titles
 
     override func viewDidLoad() {
@@ -13,7 +13,7 @@ class BottomSheetViewController: UIViewController {
         view.backgroundColor = .systemBackground
 
         setupButtons()
-        setupCollectionView()
+        setupEventsCollectionView()
     }
 
     func setupButtons() {
@@ -39,37 +39,36 @@ class BottomSheetViewController: UIViewController {
         ])
     }
 
-    func setupCollectionView() {
+    func setupEventsCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 12
         layout.itemSize = CGSize(width: view.bounds.width - 40, height: 80)
 
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .clear
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: EventCollectionViewCell.reuse)
+        eventsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        eventsCollectionView.backgroundColor = .clear
+        eventsCollectionView.delegate = self
+        eventsCollectionView.dataSource = self
+        eventsCollectionView.register(EventCollectionViewCell.self, forCellWithReuseIdentifier: EventCollectionViewCell.reuse)
 
-        view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(eventsCollectionView)
+        eventsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+            eventsCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            eventsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            eventsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            eventsCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         ])
     }
 
     @objc func buttonTapped(_ sender: UIButton) {
         guard let title = sender.titleLabel?.text else { return }
 
-        collectionView?.removeFromSuperview() // Remove previous collectionView if any
+        eventsCollectionView?.removeFromSuperview() // Remove previous collectionView if any
 
         if title == "Events" {
-//            events = (1...10).map { "Event \($0)" }  // Replace with actual Event models later
-            setupCollectionView()
-            collectionView.reloadData()
+            setupEventsCollectionView()
+            eventsCollectionView.reloadData()
         }
     }
 }
