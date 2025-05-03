@@ -30,10 +30,10 @@ Allows categorization of tasks and events to allow easy access and organization.
 ## Screenshots / Important Features:
 
 Main page:
-![main page](screenshots/Main page.png)
+![Main page](https://github.com/user-attachments/assets/f1b16202-464a-48fc-a426-aa64c58ba64d)
 
 Expanded bottom sheet:
-![Expanded bottom sheet](screenshots/Expanded bottom sheet.png)
+![Expanded bottom sheet](https://github.com/user-attachments/assets/241d6e8f-c3cc-4477-acca-d45c30d31f71)
 
 ## Requirements:
 
