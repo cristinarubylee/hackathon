@@ -29,6 +29,12 @@ Allows categorization of tasks and events to allow easy access and organization.
 
 ## Screenshots / Important Features:
 
+Main page:
+![main page](screenshots/Main page.png)
+
+Expanded bottom sheet:
+![Expanded bottom sheet](screenshots/Expanded bottom sheet.png)
+
 ## Requirements:
 
 ### Backend: 
