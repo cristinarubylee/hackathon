@@ -19,19 +19,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func showBottomSheet() {
-        // Create the BottomSheetViewController
-        let bottomSheetVC = BottomSheetViewController()
+            // Create the BottomSheetViewController
+            let bottomSheetVC = BottomSheetViewController()
+            
+            bottomSheetVC.isModalInPresentation = true // Prevent swipe-to-dismiss
 
-        // Set the modal presentation style to make it act like a bottom sheet
-        bottomSheetVC.modalPresentationStyle = .pageSheet
-        if let sheet = bottomSheetVC.sheetPresentationController {
-            sheet.detents = [.medium(), .large()] // Adjust the sheet size as you like
-            sheet.prefersGrabberVisible = true
+            // Set the modal presentation style to make it act like a bottom sheet
+            bottomSheetVC.modalPresentationStyle = .pageSheet
+            if let sheet = bottomSheetVC.sheetPresentationController {
+                sheet.detents = [
+                    .custom(identifier: .init("small")) { context in
+                        return 125 // Set the custom small height here
+                    },
+                    .medium(),
+                    .large()
+                ]
+                sheet.selectedDetentIdentifier = .init("small") // Optional: set initial detent
+                sheet.prefersGrabberVisible = true
+            }
+
+
+            // Present the BottomSheet on top of the root view controller (which is a navigation controller)
+            window?.rootViewController?.present(bottomSheetVC, animated: true, completion: nil)
         }
-
-        // Present the BottomSheet on top of the root view controller (which is a navigation controller)
-        window?.rootViewController?.present(bottomSheetVC, animated: true, completion: nil)
-    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
